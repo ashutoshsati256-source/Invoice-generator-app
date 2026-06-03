@@ -1,0 +1,51 @@
+from tkinter import *
+
+def generate_invoice():
+    customer = customer_entry.get()
+    product = product_entry.get()
+
+    qty = int(qty_entry.get())
+    price = float(price_entry.get())
+
+    subtotal = qty * price
+    gst = subtotal * 0.18
+    total = subtotal + gst
+
+    result.config(
+        text=
+        f"Customer: {customer}\n"
+        f"Product: {product}\n"
+        f"Quantity: {qty}\n"
+        f"Price: ₹{price}\n"
+        f"Subtotal: ₹{subtotal}\n"
+        f"GST (18%): ₹{gst}\n"
+        f"Total: ₹{total}"
+    )
+
+root = Tk()
+root.title("Invoice Generator")
+root.geometry("350x400")
+
+Label(root, text="Customer Name").pack()
+customer_entry = Entry(root)
+customer_entry.pack()
+
+Label(root, text="Product Name").pack()
+product_entry = Entry(root)
+product_entry.pack()
+
+Label(root, text="Quantity").pack()
+qty_entry = Entry(root)
+qty_entry.pack()
+
+Label(root, text="Price").pack()
+price_entry = Entry(root)
+price_entry.pack()
+
+Button(root, text="Generate Invoice",
+       command=generate_invoice).pack(pady=10)
+
+result = Label(root, text="", justify="left")
+result.pack(pady=10)
+
+root.mainloop()
